@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta  name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no minimum-scale=1.0, maximum-scale=1.0"/>
+    <title>Add Pickup Point</title>
+    <meta name="description" content="" />
+
+    <!-- headerscript -->
+    @include('includes.header_script')
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkXHcTsdrUyZ3Rbt8J8u5SD0lSp7Md4AI&libraries=places"></script>
+<style>
+    .form-label{font-weight:600;}
+         .imagePreview {
+            width: 100%;
+            height: 200px;
+            background-position: center center;
+            background: url(https://tamilnaducouncil.ac.in/wp-content/uploads/2020/04/dummy-avatar.jpg);
+            background-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .imgUp {
+            margin-bottom: 15px;
+        }
+</style>
+  </head>
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+       @include('includes.sidebar')
+        <!-- / Menu -->
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          @include('includes.header')
+          <!-- / Navbar -->
+        <!-- Content wrapper-->
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Manage  Pickup Point/</span>Add Pickup Point</h4>
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row justify-content-start">
+                <!-- Basic Layout-->
+                <div class="col-md-xxl">
+                  <div class="card mb-4  mx-auto" >
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">Add Pickup Point</h5>
+                       <a href="{{url('view_pickup_points') }}" class="btn btn-primary float-end">View Pickup Point</a> 
+                    </div>
+                    <div class="card-body">
+                        
+                        
+                             <form id="formAuthentication" class="mb-3" action="{{url('/') }}/add_pickup_points" enctype="multipart/form-data" method="POST">
+                                 @csrf
+                    
+                                @if ($errors->any())
+                               <div class="alert alert-danger">
+                                <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                </ul>
+                                </div>
+                                 @endif
+                    
+                    
+                                @if(session('success'))
+                                <div class="alert alert-primary">
+                                {{ session('success') }}
+                                </div>
+                                @endif
+                                
+                                 <div class="row">
+                                      <div class="col-md-3 mb-4 imgUp">
+                                                    <div class="form-group">
+                                                        <div class="imagePreview"></div>
+                                                        <label class="form-control btn btn-primary">Profile Pic
+                                                            <input class="uploadFile img" type="file" value="Profile Pic" style="width: 0px;height: 0px;overflow: hidden;" name="profile_pic" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 mb-4 imgUp">
+                                                    <div class="form-group">
+                                                        <div class="imagePreview"></div>
+                                                        <label class="form-control btn btn-primary">Aadhar Card
+                                                            <input class="uploadFile img" type="file" value="Aadhar Card" style="width: 0px;height: 0px;overflow: hidden;" name="addhar_card" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 mb-4 imgUp">
+                                                    <div class="form-group">
+                                                        <div class="imagePreview"></div>
+                                                        <label class="form-control btn btn-primary">Pan Cars
+                                                            <input class="uploadFile img" type="file" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" name="pan_card" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                  
+                                    
+                                </div>
+                                
+                              <!-- Pickup Point Name -->
+                           <div class="row">
+                             <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">User Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter User name" required>
+                            </div>
+                            
+                              <!-- Contact Number -->
+                            <div class="col-md-6 mb-3">
+                                <label for="contactNumber" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="contactNumber" name="contactNumber" placeholder="Enter contact number" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label"> Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter User email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="Password" name="password" placeholder="Enter  Password" required>
+                            </div>
+                            
+                            </div>
+                              <!-- Pickup Point Address -->
+                            <div class="mb-3">
+                                <label for="pickupPointAddress" class="form-label"> Address</label>
+                                <input type="text" class="form-control" id="pickupPointAddress" name="pickupPointAddress" placeholder="Enter pickup point address" required>
+                            </div>
+                            
+                              <div class="mb-3">
+                                <label for="pincode" class="form-label"> Pincode</label>
+                                <input type="number"  maxlength='6' minlength='6' min="0"  class="form-control" id="pincode" name="pincode" placeholder="Enter pickup point pincode" required>
+                            </div>
+                            
+                           
+                           
+                            
+                              <!-- Pickup Point Name -->
+                             <div class="mb-3">
+                                <label for="pickupPointName" class="form-label">Pickup Point Name</label>
+                                <input type="text" class="form-control" id="pickupPointName" name="pickupPointName" placeholder="Enter pickup point name" required>
+                            </div>
+                            
+                          
+                          
+                            
+                          
+                            
+                            <!-- Operating Hours -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="openingTime" class="form-label">Opening Time</label>
+                                    <input type="time" class="form-control" id="openingTime" name="openingTime" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="closingTime" class="form-label">Closing Time</label>
+                                    <input type="time" class="form-control" id="closingTime" name="closingTime" required>
+                                </div>
+                            </div>
+                            
+                           
+                            
+                            <!-- Additional Notes -->
+                            <div class="mb-3">
+                                <label for="additionalNotes" class="form-label">Additional Notes (Optional)</label>
+                                <textarea class="form-control" id="additionalNotes" name="additionalNotes" rows="3" placeholder="Add any instructions or notes about this pickup point"></textarea>
+                            </div>
+                            
+                             <!-- Google Location Autocomplete -->
+                            <div class="mb-3">
+                                <label for="googleLocation" class="form-label">Google Location</label>
+                                <input type="text" class="form-control" id="googleLocation" name="googleLocation" placeholder="Search or pin location on the map" required>
+                                <div id="map" class="mt-3" style="width: 100%; height: 300px; border: 1px solid #ddd;"></div>
+                            </div>
+                            
+                            
+                          
+                            
+                                                <div class="list_wrapper row mb-3">
+                                                    <div class="col-sm-4">
+                                                         
+                                                        
+                                                <div class="form-group">
+                                               
+                                                <label class="form-label"> Pickup Point Images
+                                                   
+                                                    <input  class="form-control" type="file" value="Upload Photo" multiple  name="pickupPointImages[]" required/>
+                                                </label>
+                                            </div>
+                                                    </div>
+                                                </div>
+                                           
+                                            
+                                            
+
+                                            <div class="form-group mb-3 mt-3">
+                                                <label class="form-label"><span class=""></span></label>
+                                                <button type="button" class="list_add_button btn btn btn-info mb-5">Add More Image <i class="menu-icon tf-icons bx bx-plus"></i></button>
+                                            </div>
+
+        
+                            
+                              <!-- Submit Button -->
+                              <div class="form-group mb-3">
+                                       <button type="submit" class=" btn btn btn-primary">Add Pickup Point</button>
+                                       </div>
+                               
+                             
+                            </form>
+                          
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            <!-- Footer -->
+            <footer class="default-footer">
+            @include('includes.footer')     
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    @include('includes.footer_script')
+   <!-- footerscrit -->
+ 
+ <script>
+    $(function() {
+        $(document).on("change", ".uploadFile", function() {
+            var uploadFile = $(this);
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+            if (/^image/.test(files[0].type)) { // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function() { // set image data as background of div
+                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                    uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+                }
+            }
+
+        });
+    });
+    
+    
+    
+ $(document).ready(function() {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+        $('.list_add_button').click(function() {
+            if (x < list_maxField) {
+                x++; //Increment field counter
+                var list_fieldHTML = ' <div class="col-sm-4"><div class="form-group"><label class="form-label"> Pickup Point Images</label><input class="form-control"  type="file" value="Upload Photo" multiple name="pickupPointImages[]" required/><button type="button" class="list_remove_button btn btn-danger"><i class="menu-icon tf-icons bx bx-minus"></i></button></div></div>';
+                $('.list_wrapper').append(list_fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $('.list_wrapper').on('click', '.list_remove_button', function() {
+            $(this).closest('.col-sm-4').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+
+  
+    
+    
+    
+    let map, autocomplete;
+
+    function initMap() {
+      // Initialize map
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 31.1048, lng: 77.1734 }, // Default location (San Francisco)
+        zoom: 12,
+      });
+
+      // Initialize Google Places Autocomplete
+      const input = document.getElementById("googleLocation");
+      autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo("bounds", map);
+
+      const marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+      });
+
+      autocomplete.addListener("place_changed", () => {
+        marker.setVisible(false);
+        const place = autocomplete.getPlace();
+
+        if (!place.geometry || !place.geometry.location) {
+          alert("No details available for the input location.");
+          return;
+        }
+
+        // Zoom and center map to the selected location
+        if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+        } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17);
+        }
+
+        // Set marker position
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+      });
+    }
+
+    // Initialize map on page load
+    window.onload = initMap;
+  </script>
+
+  </body>
+</html>
+
+
+
+
+
+  

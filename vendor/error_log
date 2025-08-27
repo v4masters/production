@@ -1,0 +1,32 @@
+[11-Mar-2025 10:29:26 UTC] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/crt3y6fprbwi/public_html/vendor/test.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 41
+[11-Mar-2025 10:29:28 UTC] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/crt3y6fprbwi/public_html/vendor/test.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 41
+[11-Mar-2025 10:31:06 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Encryptor::__construct(), 0 passed in /home/crt3y6fprbwi/public_html/vendor/test.php on line 41 and exactly 2 expected in /home/crt3y6fprbwi/public_html/vendor/test.php:6
+Stack trace:
+#0 /home/crt3y6fprbwi/public_html/vendor/test.php(41): Encryptor->__construct()
+#1 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 6
+[11-Mar-2025 10:34:24 UTC] PHP Warning:  openssl_encrypt(): IV passed is 16 bytes long which is longer than the 0 expected by selected cipher, truncating in /home/crt3y6fprbwi/public_html/vendor/test.php on line 12
+[11-Mar-2025 10:38:09 UTC] PHP Warning:  openssl_encrypt(): IV passed is 16 bytes long which is longer than the 0 expected by selected cipher, truncating in /home/crt3y6fprbwi/public_html/vendor/test.php on line 12
+[11-Mar-2025 10:38:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function encryptDataa() in /home/crt3y6fprbwi/public_html/vendor/test.php:24
+Stack trace:
+#0 /home/crt3y6fprbwi/public_html/vendor/test.php(35): test_pay()
+#1 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 24
+[11-Mar-2025 10:38:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function encryptDataa() in /home/crt3y6fprbwi/public_html/vendor/test.php:24
+Stack trace:
+#0 /home/crt3y6fprbwi/public_html/vendor/test.php(35): test_pay()
+#1 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 24
+[11-Mar-2025 10:39:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function encryptDataa() in /home/crt3y6fprbwi/public_html/vendor/test.php:24
+Stack trace:
+#0 /home/crt3y6fprbwi/public_html/vendor/test.php(35): test_pay()
+#1 {main}
+  thrown in /home/crt3y6fprbwi/public_html/vendor/test.php on line 24
+[11-Mar-2025 10:39:21 UTC] PHP Warning:  openssl_encrypt(): IV passed is 16 bytes long which is longer than the 0 expected by selected cipher, truncating in /home/crt3y6fprbwi/public_html/vendor/test.php on line 12
+[11-Mar-2025 10:39:37 UTC] PHP Warning:  openssl_encrypt(): IV passed is 16 bytes long which is longer than the 0 expected by selected cipher, truncating in /home/crt3y6fprbwi/public_html/vendor/test.php on line 12
